@@ -1,13 +1,14 @@
 
 function editMovie(movie){
     const {id, posterURL, title, year, director, storyline, trailerEmbed, rating} = movie.data.movie[0]
+    window.location.hash = `movies/${id}`
     document.getElementById('content').innerHTML = editFormTempate(movie)
     document.getElementById('title').value = title
     document.getElementById('director').value = director
     document.getElementById('year').value = year
     document.getElementById('rating').value = rating
     document.getElementById('posterURL').value = posterURL
-    document.getElementById('trailerEmbed').value = trailerEmbed
+    document.getElementById('trailerEmbed').value = `http://www.imdb.com/title/tt1430612/videoplayer/${trailerEmbed}`
     document.getElementById('storyline').value = storyline
     document.getElementById('submit').addEventListener('click', (event) => {
       event.preventDefault()
@@ -17,16 +18,24 @@ function editMovie(movie){
       update.year = document.getElementById('year').value
       update.rating = document.getElementById('rating').value
       update.posterURL = document.getElementById('posterURL').value
-      update.trailerEmbed = document.getElementById('trailerEmbed').value
+      const tempTrailer = document.getElementById('trailerEmbed').value.split('/')
+      update.trailerEmbed = tempTrailer[tempTrailer.length-1]
       update.storyline = document.getElementById('storyline').value
-      if(!update.title || !update.director || !update.year || !update.rating || !update.posterURL || !update.trailerEmbed || !update.storyline){
-        document.getElementById('alert').innerHTML = `All fields are required add a movie`
+      if (checkPW(update.title) === 1){
+        if(typeof update.year === NaN){
+          document.getElementById('alert').innerHTML = `Release year must be a number`
+        }else if(!update.title || !update.director || !update.year || !update.rating || !update.posterURL || !update.trailerEmbed || !update.storyline){
+          document.getElementById('alert').innerHTML = `All fields are required to add a movie`
+        }else{
+          Movie.update(id, update)
+            .then(result => {
+              loadDetail(result.data.movie[0].id)
+            })
+        }
+
       }else{
-        console.log('test');
-        Movie.update(id, update)
-          .then(result => {
-            loadDetail(result.data.movie[0].id)
-          })
+        document.getElementById('alert').innerHTML = `Paul Walker movies only, please`
+        return null
       }
     })
 

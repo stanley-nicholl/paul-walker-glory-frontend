@@ -10,41 +10,35 @@ function newMovie(){
     movie.year = parseInt(document.getElementById('year').value)
     movie.rating = document.getElementById('rating').value
     movie.posterURL = document.getElementById('posterURL').value
-    movie.trailerEmbed = document.getElementById('trailerEmbed').value
+    const tempTrailer = document.getElementById('trailerEmbed').value.split('/')
+    movie.trailerEmbed = tempTrailer[tempTrailer.length-1]
     movie.storyline = document.getElementById('storyline').value
-    console.log(storyline);
-    // if (!checkPW(movie.title)){
-    //   document.getElementById('alert').innerHTML = `Trying to submit something other than a PW movie? Bye, Felicia.`
-    //   setTimeout(kickout(), 3000);
-    //   return null
-    // }
+    if (checkPW(movie.title) === 1){
+      if(typeof movie.year === NaN){
+        document.getElementById('alert').innerHTML = `Release year must be a number`
+      }else if(!movie.title || !movie.director || !movie.year || !movie.rating || !movie.posterURL || !movie.trailerEmbed || !movie.storyline){
+        document.getElementById('alert').innerHTML = `All fields are required to add a movie`
+      }else{
+        Movie.create(movie)
+          .then(result => {
+            loadDetail(result.data.movie[0].id)
+          })
+      }
 
-    if(typeof movie.year === NaN){
-      console.log('if');
-      document.getElementById('alert').innerHTML = `Release year must be a number`
-    }else if(!movie.title || !movie.director || !movie.year || !movie.rating || !movie.posterURL || !movie.trailerEmbed || !movie.storyline){
-      console.log(movie.year);
-      console.log('elseif');
-      document.getElementById('alert').innerHTML = `All fields are required to add a movie`
     }else{
-      console.log('else');
-      Movie.create(movie)
-        .then(result => {
-          loadDetail(result.data.movie[0].id)
-        })
+      document.getElementById('alert').innerHTML = `Paul Walker movies only, please`
+      return null
     }
   })
 }
 
 function checkPW(title){
-  if(pwMovies.includes(title)){
-    return 1
-  }else{
-    return 0
-  }
-}
-
-function kickout() {
-  localStorage.setItem('pwBanned', 'true')
-  window.location.replace("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+  let result =0
+  const check = title.toLowerCase()
+  pwMovies.forEach(movie => {
+    if(movie.title === check){
+      result = 1
+    }
+  })
+    return result
 }

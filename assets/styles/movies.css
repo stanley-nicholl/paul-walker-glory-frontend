@@ -54,30 +54,7 @@ img{
 
 @media screen and (max-width: 1213px) {
 
-  .detail{
-    font-size: .8rem;
-  }
 
-  iframe{
-    display: none;
-  }
-
-  #movie-poster{
-    max-width: 90vw;
-    max-width: 100%;
-  }
-
-  .list-items{
-    font-size: 12px;
-  }
-
-  .movie-poster{
-    display: none;
-  }
-
-  #trailer{
-    max-width: 90vw;
-  }
 
   #small-nav{
     display: block;

@@ -39,7 +39,8 @@ function loadList(){
   return Movie.getAll()
     .then(result => {
       let movies = result.data.movies
-      let list = `<div class="row d-flex justify-content-between">
+      let list = `
+      <div class="row d-flex justify-content-between">
         <h1 class="mb-5 heading col-8">A sampling of Paul's silver screen gold</h1>
         <button type="button" class="btn btn-warning px-4 mr-3" id="add">Add a movie</button>
       </div>
@@ -62,13 +63,13 @@ function loadList(){
       })
       list += `</tbody></table>`
       document.getElementById('content').innerHTML = list
-      console.log(ids);
       ids.forEach(id => {
         document.getElementById(id).addEventListener('click', (event) => {
           event.preventDefault()
           loadDetail(id)
         })
       })
+      window.location.hash = `movies`
       document.getElementById('add').addEventListener('click', () => {
         newMovie()
       })

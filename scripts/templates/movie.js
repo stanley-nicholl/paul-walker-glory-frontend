@@ -22,10 +22,8 @@ function loadMovieDetails(movie){
           <p id="year" class="detail mb-3"><span class="bold-listing">Year:</span> ${year}</p>
           <p id="rating" class="detail mb-3"><span class="bold-listing">Rating:</span> ${rating}</p>
         </div>
-        <div class="trailer-synopsis">
-          ${trailerEmbed}
+          <iframe id="trailer" src="http://www.imdb.com/videoembed/${trailerEmbed}" allowfullscreen width="480" height="225"></iframe>
           <p id="storyline" class="detail mt-1">${storyline}</p>
-        </div>
       </div>
     </div>
   </div>

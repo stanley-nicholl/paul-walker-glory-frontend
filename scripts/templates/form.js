@@ -86,11 +86,12 @@ function editFormTempate(movie){
       <div class="form-group col-5">
         <label for="posterURL">URL for Movie Poster</label>
         <input type="text" class="form-control" id="posterURL" placeholder="" value=${posterURL}>
+        <small id="trailerHelp" class="form-text text-muted">Please copy 'image address' from IMDb</small>
       </div>
       <div class="form-group col-5">
         <label for="trailerEmbed">URL for Trailer</label>
-        <input type="text" class="form-control" id="trailerEmbed" placeholder="" value=''>
-        <small id="trailerHelp" class="form-text text-muted">Please include the whole iframe element from IMDb</small>
+        <input type="text" class="form-control" id="trailerEmbed" placeholder="" value="http://www.imdb.com/title/tt1430612/videoplayer/${trailerEmbed}">
+        <small id="trailerHelp" class="form-text text-muted">Please copy the web link from IMDb's trailer</small>
       </div>
     </div>
     <div class="row">
