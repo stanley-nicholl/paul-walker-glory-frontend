@@ -1,0 +1,27 @@
+body{
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+img{
+  max-height: 94vh;
+}
+
+#small-nav{
+  display: none
+}
+
+
+
+
+
+
+@media screen and (max-width: 1000px) {
+  #small-nav{
+    display: block;
+  }
+
+  #large-nav{
+    display: none;
+  }
+}

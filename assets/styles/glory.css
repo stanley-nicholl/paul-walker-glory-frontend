@@ -1,0 +1,64 @@
+body{
+  font-size: 16px;
+  box-sizing: border-box;
+  background-color: #000;
+}
+
+img{
+  max-height: 94vh;
+}
+
+#small-nav{
+  display: none
+}
+
+#video-area{
+  height: 100vh
+}
+
+.wrapper {
+  width: 80%;
+  max-width: 800px;
+  height: 40vh;
+  margin: 0 auto;
+  background: #000
+}
+
+.h_iframe {
+  position: relative;
+  padding-top: 50%;
+}
+
+.h_iframe iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+button{
+  margin-top: 8rem;
+}
+
+
+@media screen and (max-width: 1000px) {
+  #small-nav{
+    display: block;
+  }
+
+  #large-nav{
+    display: none;
+  }
+
+  button{
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 300px) {
+
+  button{
+    margin-top: 0rem;
+  }
+}
